@@ -14,7 +14,7 @@ _engine::StateManager::~StateManager()
 // methods
 void _engine::StateManager::PushState(StateRef toAdd, bool isReplacing)
 {
-	isAdding = true;
+	this->isAdding = true;
 	this->isReplacing = isReplacing;
 
 	// since toadd is a unique ptr, we can not use direct copy, we need to use std::move
@@ -61,5 +61,10 @@ void _engine::StateManager::ProcessStateChange()
 std::unique_ptr<_engine::State>& _engine::StateManager::GetCurrent()
 {
 	return stateStack.top();
+}
+
+bool _engine::StateManager::isProcessing()
+{
+	return isRemoving || isAdding || isReplacing;
 }
  

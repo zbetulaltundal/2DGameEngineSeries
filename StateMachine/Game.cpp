@@ -8,7 +8,7 @@ _engine::Game::Game(int width, int height, std::string title)
 	//TODO
 	// ADD FIRST STATE
 	thisGameData->states.PushState( StateRef(new SplashState(this->thisGameData)), true);
-	timeSinceLastFrame = 0.0f;
+	this->Run();
 }
 
 // destructor(s)
@@ -16,27 +16,42 @@ _engine::Game::~Game()
 {
 }
 
-void _engine::Game::Update()
+// methods
+void _engine::Game::Run(){
+
+	// delta time
+	float timeSinceLastFrame = 0.0f;
+	sf::Clock clock;
+
+	while (IsRunning())
+	{
+		// calculate delta time
+		timeSinceLastFrame += clock.restart().asSeconds(); 
+
+		// Update the game
+		Update(timeSinceLastFrame);
+	}
+}
+
+void _engine::Game::Update(float timeSinceLastFrame)
 {
-	// puts the time ctr back to zero
-	timeSinceLastFrame = clock.restart().asSeconds(); // deltaTime
-
-	thisGameData->states.ProcessStateChange();
-	thisGameData->states.GetCurrent()->HandleInput();
 	// update cycle
-	while (timeSinceLastFrame > timePerFrame) {
+	if (timeSinceLastFrame > timePerFrame) 
+	{	// time per frame = switch time
 
-		// update will only happen if time since the last update is more than 1/60 seconds 
 		timeSinceLastFrame -= timePerFrame;
+		// Update the current state
+		thisGameData->states.ProcessStateChange();
+		thisGameData->states.GetCurrent()->HandleInput();
+		thisGameData->states.GetCurrent()->Update(timePerFrame);
 
-		//// TODO
-		thisGameData->states.GetCurrent()->Update(timeSinceLastFrame);
+		//Render
+		Render();
 	}
 }
 
 void _engine::Game::Render() {
 
-	std::cout << "Rendering" << std::endl;
 	thisGameData->states.GetCurrent()->Draw();
 }
 

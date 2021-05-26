@@ -38,6 +38,7 @@ namespace _engine
 
 		// getters & setters
 		StateRef & GetCurrent();
+		bool isProcessing();
 	};
 
 };

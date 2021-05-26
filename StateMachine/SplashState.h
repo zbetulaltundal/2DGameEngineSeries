@@ -16,7 +16,6 @@ namespace _engine {
 		
 		// constructors & destructors
 		SplashState(GameDataRef gameData); 
-		~SplashState();
 
 		// methods
 		void Init();

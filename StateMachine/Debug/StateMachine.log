@@ -1,2 +1,29 @@
-﻿  Source.cpp
-  StateMachine.vcxproj -> D:\CODES\SFML\stateMachine\StateMachine\Debug\StateMachine.exe
+﻿  AssetManager.cpp
+  Game.cpp
+  InputManager.cpp
+d:\codes\github\2dgameengineseries\statemachine\inputmanager.cpp(9): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+d:\codes\github\2dgameengineseries\statemachine\inputmanager.cpp(9): warning C4244: 'argument': conversion from 'const T' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+  MainMenuState.cpp
+d:\codes\github\2dgameengineseries\statemachine\mainmenustate.cpp(24): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Source.cpp
+  SplashState.cpp
+  State.cpp
+  StateManager.cpp
+  Generating Code...
+  StateMachine.vcxproj -> D:\CODES\GITHUB\2DGameEngineSeries\Debug\StateMachine.exe

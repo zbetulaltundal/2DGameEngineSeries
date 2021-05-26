@@ -1,0 +1,16 @@
+﻿  AssetManager.cpp
+d:\codes\github\2dgameengineseries\statemachine\assetmanager.h(7): fatal error C1083: Cannot open include file: 'SFML/Graphics/Texture.hpp': No such file or directory
+  Game.cpp
+d:\codes\github\2dgameengineseries\statemachine\game.h(3): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  InputManager.cpp
+d:\codes\github\2dgameengineseries\statemachine\inputmanager.h(3): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  MainMenuState.cpp
+d:\codes\github\2dgameengineseries\statemachine\mainmenustate.h(3): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  Source.cpp
+d:\codes\github\2dgameengineseries\statemachine\game.h(3): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  SplashState.cpp
+d:\codes\github\2dgameengineseries\statemachine\splashstate.h(3): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  State.cpp
+  StateManager.cpp
+d:\codes\github\2dgameengineseries\statemachine\statemanager.h(7): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  Generating Code...

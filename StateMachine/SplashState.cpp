@@ -3,15 +3,11 @@
 
 #include "SplashState.h"
 #include "Definitions.h"
+#include "MainMenuState.h"
 
 // constructor(s)
 _engine::SplashState::SplashState(GameDataRef gameData)
 	: gameData(gameData) {
-}
-
-// destructor(s)
-_engine::SplashState::~SplashState()
-{
 }
 
 // methods
@@ -26,7 +22,6 @@ void _engine::SplashState::HandleInput()
 	// event handling code
 	sf::Event ev;
 
-	std::cout << "Handling input" << std::endl;
 	while (gameData->window.pollEvent(ev)) {
 		switch (ev.type) {
 		case(sf::Event::Closed):
@@ -45,9 +40,10 @@ void _engine::SplashState::HandleInput()
 void _engine::SplashState::Update(float deltaTime)
 {
 	if (clock.getElapsedTime().asSeconds() > SPLASH_STATE_SHOW_TIME) {
-		// SWITCH TO THE MAIN MENU
 
+		// SWITCH TO THE MAIN MENU
 		std::cout << "Go to Main Menu" << std::endl;
+		gameData->states.PushState(StateRef(new MainMenuState(gameData)), true);
 	}
 }
 

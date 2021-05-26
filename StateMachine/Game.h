@@ -24,8 +24,6 @@ namespace _engine {
 	class Game
 	{
 		const float timePerFrame = 1.0f / 60.0f; // switchTime
-		float timeSinceLastFrame;
-		sf::Clock clock;
 		GameDataRef thisGameData = std::make_shared<GameData>();
 
 	public:
@@ -33,7 +31,8 @@ namespace _engine {
 		~Game();
 
 		// methods
-		void Update();
+		void Run();
+		void Update(float timeSinceLastFrame);
 		void Render();
 
 		// Getters
