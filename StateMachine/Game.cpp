@@ -20,37 +20,36 @@ _engine::Game::~Game()
 void _engine::Game::Run(){
 
 	// delta time
-	float timeSinceLastFrame = 0.0f;
-	sf::Clock clock;
+	float newTime, frameTime, interpolation;
+	float currentTime = this->clock.getElapsedTime().asSeconds();
+	float accumulator = 0.0f;
 
 	while (IsRunning())
 	{
-		// calculate delta time
-		timeSinceLastFrame += clock.restart().asSeconds(); 
-
-		// Update the game
-		Update(timeSinceLastFrame);
-	}
-}
-
-void _engine::Game::Update(float timeSinceLastFrame)
-{
-	// update cycle
-	if (timeSinceLastFrame > timePerFrame) 
-	{	// time per frame = switch time
-
-		timeSinceLastFrame -= timePerFrame;
-		// Update the current state
 		thisGameData->states.ProcessStateChange();
-		thisGameData->states.GetCurrent()->HandleInput();
-		thisGameData->states.GetCurrent()->Update(timePerFrame);
+		// calculate delta time
+		newTime = this->clock.getElapsedTime().asSeconds();
+		// Update the game
+		frameTime = newTime - currentTime;
+		if (frameTime > 0.25f) {
+			frameTime = 0.25f;
+		}
 
-		//Render
-		Render();
+		currentTime = newTime;
+		accumulator += frameTime;
+		while (accumulator >= dt) {
+			// Update the current state
+			thisGameData->states.GetCurrent()->HandleInput();
+			thisGameData->states.GetCurrent()->Update(accumulator);
+
+			accumulator -= dt;
+		}
+		interpolation = accumulator / dt;
+		Render(interpolation);
 	}
 }
 
-void _engine::Game::Render() {
+void _engine::Game::Render(float interpolation) {
 
 	thisGameData->states.GetCurrent()->Draw();
 }

@@ -23,7 +23,8 @@ namespace _engine {
 
 	class Game
 	{
-		const float timePerFrame = 1.0f / 60.0f; // switchTime
+		const float dt = 1.0f / 60.0f;
+		sf::Clock clock;
 		GameDataRef thisGameData = std::make_shared<GameData>();
 
 	public:
@@ -32,8 +33,7 @@ namespace _engine {
 
 		// methods
 		void Run();
-		void Update(float timeSinceLastFrame);
-		void Render();
+		void Render(float interpolation);
 
 		// Getters
 		bool IsRunning();

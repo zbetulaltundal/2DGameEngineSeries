@@ -19,8 +19,9 @@ namespace _engine {
 		AssetManager();
 		~AssetManager();
 
-		void LoadTexture(std::string name, std::string filePath);
+		sf::Texture* LoadTexture(std::string name, std::string filePath);
 		sf::Texture &GetTexture(std::string name);
+		sf::Texture *GetRef2Texture(std::string name);
 
 		void LoadFont(std::string name, std::string filePath);
 		sf::Font &GetFont(std::string name);

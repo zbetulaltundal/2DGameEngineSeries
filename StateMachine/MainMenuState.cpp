@@ -2,6 +2,7 @@
 #include"Definitions.h"
 #include<sstream>
 #include<iostream>
+#include"GamePlayState.h"
 
 // constructor
 _engine::MainMenuState::MainMenuState(GameDataRef gameData)
@@ -15,7 +16,6 @@ void _engine::MainMenuState::Init()
 	gameData->assets.LoadTexture("Main menu background", MAIN_MENU_STATE_PATH2BACKGROUND);
 	gameData->assets.LoadTexture("Play button", MAIN_MENU_STATE_PATH2PLAYBUTTON);
 	gameData->assets.LoadTexture("Main menu title", MAIN_MENU_STATE_PATH2TITLE);
-	//gameData->assets.LoadTexture("Background", MAIN_MENU_STATE_PATH2BACKGROUND);
 	background.setTexture(gameData->assets.GetTexture("Main menu background"));
 	playButton.setTexture(gameData->assets.GetTexture("Play button"));
 	title.setTexture(gameData->assets.GetTexture("Main menu title"));
@@ -32,7 +32,8 @@ void _engine::MainMenuState::HandleInput()
 	while (gameData->window.pollEvent(ev)) {
 
 		if (gameData->input.IsSpriteClicked(playButton, sf::Mouse::Left, gameData->window)) {
-			std::cout << "Go to game screen" << std::endl;
+
+			gameData->states.PushState(StateRef(new GamePlayState(gameData)), true);
 		}
 
 		switch (ev.type) {

@@ -10,22 +10,29 @@ _engine::AssetManager::~AssetManager()
 {
 }
 
-void _engine::AssetManager::LoadTexture(std::string name, std::string filePath)
+sf::Texture*  _engine::AssetManager::LoadTexture(std::string name, std::string filePath)
 {
 
 	sf::Texture texture;
 	if (!texture.loadFromFile(filePath)) {
 		std::cerr << "Could not load the specified texture" << std::endl;
-		return;
+		return NULL;
 	}
 
 	// added to map w given name
 	textures[name] = texture;
+
+	return &texture;
 }
 
 sf::Texture & _engine::AssetManager::GetTexture(std::string name)
 {
 	return textures.at(name);
+}
+
+sf::Texture * _engine::AssetManager::GetRef2Texture(std::string name)
+{
+	return &textures.at(name);
 }
 
 void _engine::AssetManager::LoadFont(std::string name, std::string filePath)

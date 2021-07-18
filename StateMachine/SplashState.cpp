@@ -42,7 +42,6 @@ void _engine::SplashState::Update(float deltaTime)
 	if (clock.getElapsedTime().asSeconds() > SPLASH_STATE_SHOW_TIME) {
 
 		// SWITCH TO THE MAIN MENU
-		std::cout << "Go to Main Menu" << std::endl;
 		gameData->states.PushState(StateRef(new MainMenuState(gameData)), true);
 	}
 }
